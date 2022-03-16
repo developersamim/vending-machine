@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{943A18A9-48EA-4968-AB6F-D988641BC2D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{56B32C9D-3A43-409D-B065-9B8A02069107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "identity-server", "services\identity\identity-server\identity-server.csproj", "{0CDD8D21-3ECF-4172-B254-4BED0A5FD935}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{D35E0054-CC6C-494B-B0E6-CEF92D495035}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common.utilities", "common\common.utilities\common.utilities.csproj", "{41A54D44-A836-4F9E-B70A-9F230E0B4CE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common.api.authentication", "common\common.api.authentication\common.api.authentication.csproj", "{587BE9C9-0BFF-429E-A479-23506602F79A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "product", "product", "{D7DB93DD-DB11-4DF4-9CC4-13F34783CFEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "product.api", "services\product\product.api\product.api.csproj", "{75AA1BE8-B4B3-4416-A290-4CCA868D4E39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{2B37723F-CC54-472A-B7FF-A1A7EBE44FC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvc-app", "clients\mvc-app\mvc-app.csproj", "{2C1A8D76-844E-4662-95CE-D32DA5DCC653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CDD8D21-3ECF-4172-B254-4BED0A5FD935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CDD8D21-3ECF-4172-B254-4BED0A5FD935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CDD8D21-3ECF-4172-B254-4BED0A5FD935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CDD8D21-3ECF-4172-B254-4BED0A5FD935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A54D44-A836-4F9E-B70A-9F230E0B4CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A54D44-A836-4F9E-B70A-9F230E0B4CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A54D44-A836-4F9E-B70A-9F230E0B4CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A54D44-A836-4F9E-B70A-9F230E0B4CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{587BE9C9-0BFF-429E-A479-23506602F79A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587BE9C9-0BFF-429E-A479-23506602F79A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587BE9C9-0BFF-429E-A479-23506602F79A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587BE9C9-0BFF-429E-A479-23506602F79A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75AA1BE8-B4B3-4416-A290-4CCA868D4E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75AA1BE8-B4B3-4416-A290-4CCA868D4E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75AA1BE8-B4B3-4416-A290-4CCA868D4E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75AA1BE8-B4B3-4416-A290-4CCA868D4E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C1A8D76-844E-4662-95CE-D32DA5DCC653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1A8D76-844E-4662-95CE-D32DA5DCC653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1A8D76-844E-4662-95CE-D32DA5DCC653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1A8D76-844E-4662-95CE-D32DA5DCC653}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56B32C9D-3A43-409D-B065-9B8A02069107} = {943A18A9-48EA-4968-AB6F-D988641BC2D1}
+		{0CDD8D21-3ECF-4172-B254-4BED0A5FD935} = {56B32C9D-3A43-409D-B065-9B8A02069107}
+		{41A54D44-A836-4F9E-B70A-9F230E0B4CE5} = {D35E0054-CC6C-494B-B0E6-CEF92D495035}
+		{587BE9C9-0BFF-429E-A479-23506602F79A} = {D35E0054-CC6C-494B-B0E6-CEF92D495035}
+		{D7DB93DD-DB11-4DF4-9CC4-13F34783CFEA} = {943A18A9-48EA-4968-AB6F-D988641BC2D1}
+		{75AA1BE8-B4B3-4416-A290-4CCA868D4E39} = {D7DB93DD-DB11-4DF4-9CC4-13F34783CFEA}
+		{2C1A8D76-844E-4662-95CE-D32DA5DCC653} = {2B37723F-CC54-472A-B7FF-A1A7EBE44FC3}
+	EndGlobalSection
+EndGlobal

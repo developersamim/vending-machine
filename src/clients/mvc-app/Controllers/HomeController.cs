@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace mvc_app.Controllers;
 
-[Authorize]
+
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -25,7 +25,7 @@ public class HomeController : Controller
         return View();
     }
 
-    
+    [Authorize]
     public async Task<IActionResult> Weather()
     {
         var data = new List<WeatherData>();

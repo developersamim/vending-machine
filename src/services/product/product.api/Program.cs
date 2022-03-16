@@ -1,3 +1,4 @@
+using common.api.swagger;
 using Microsoft.OpenApi.Models;
 using product.api;
 using product.api.Services;
@@ -27,7 +28,7 @@ builder.Services.AddSwaggerGen(options =>
             }
         }
     });
-    options.OperationFilter<AuthorizeCheckOperationFilter>();
+    options.OperationFilter<AuthorizeCheckOperationFilter>("oauth2", new string[] {"server_access"});
 });
 
 builder.Services.AddAuthentication("Bearer")

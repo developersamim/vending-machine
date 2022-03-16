@@ -130,7 +130,8 @@ public static class MigrationBuilder
                 new Claim(JwtClaimTypes.Name, string.Concat(firstName, lastName)),
                 new Claim(JwtClaimTypes.GivenName, firstName),
                 new Claim(JwtClaimTypes.FamilyName, lastName),
-                new Claim(JwtClaimTypes.Role, role)
+                new Claim(JwtClaimTypes.Role, role),
+                new Claim(JwtClaimTypes.Email, email)
         }).Result;
         if (!result.Succeeded)
         {

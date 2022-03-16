@@ -1,12 +1,25 @@
-﻿using System;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace product.api;
+namespace common.api.swagger;
 
 public class AuthorizeCheckOperationFilter : IOperationFilter
 {
+    private readonly string schema;
+    private readonly string[] scopes;
+
+    public AuthorizeCheckOperationFilter(string schema, string[] scopes)
+    {
+        this.schema = schema;
+        this.scopes = scopes;
+    }
+
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
         var hasAuthorize =
@@ -26,13 +39,12 @@ public class AuthorizeCheckOperationFilter : IOperationFilter
                         new OpenApiSecurityScheme {Reference = new OpenApiReference
                         {
                             Type = ReferenceType.SecurityScheme,
-                            Id = "oauth2"}
+                            Id = schema}
                         }
-                    ] = new[] {"server_access"}
+                    ] = scopes
                 }
             };
 
         }
     }
 }
-

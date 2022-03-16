@@ -105,6 +105,17 @@ public static class Config
                     },
                     //ApiSecrets = new List<Secret> { new Secret("ScopeSecret".Sha256())},
                     UserClaims = new List<string> {"role", "email"}
+                },
+                new ApiResource("user_resource", "user api")
+                {
+                    Scopes = new List<string> {
+                        KnownScope.ServerAccess.ToScope(),
+                        KnownScope.ClientAccess.ToScope(),
+                        KnownScope.Role.ToScope(),
+                        IdentityServerConstants.StandardScopes.OpenId
+                    },
+                    //ApiSecrets = new List<Secret> { new Secret("ScopeSecret".Sha256())},
+                    UserClaims = new List<string> {"role", "email"}
                 }
         };
 

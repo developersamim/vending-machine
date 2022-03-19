@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace user.application;
+namespace product.application;
 
 public static class ApplicationServiceRegistration
 {

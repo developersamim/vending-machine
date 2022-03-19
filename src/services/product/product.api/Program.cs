@@ -1,7 +1,10 @@
 using common.api.swagger;
 using Microsoft.OpenApi.Models;
 using product.api;
+using product.api.Extension;
 using product.api.Services;
+using product.application;
+using product.infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,8 +41,12 @@ builder.Services.AddAuthentication("Bearer")
         options.Authority = "https://localhost:5001";
     });
 
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IHttpContextAccessorService, HttpContextAccessorService>();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
@@ -56,6 +63,8 @@ if (app.Environment.IsDevelopment())
         options.OAuthUsePkce();
     });
 }
+
+app.InitializeDatabase(app.Environment.IsDevelopment(), app.Services);
 
 app.UseHttpsRedirection();
 

@@ -1,0 +1,46 @@
+﻿using AutoMapper;
+using common.entityframework;
+using common.exception;
+using MediatR;
+using product.application.Contracts.Persistence;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace product.application.Features.Products.Commands.UpdateProduct;
+
+public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
+{
+    private readonly IProductRepository productRepository;
+    private readonly IUnitOfWork unitOfWork;
+    private readonly IMapper mapper;
+
+    public UpdateProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    {
+        this.productRepository = productRepository;
+        this.unitOfWork = unitOfWork;
+        this.mapper = mapper;
+    }
+
+    public async Task<Unit> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+    {
+        var product = await productRepository.GetByIdAsync(request.ProductId);
+        if (product == null)
+            throw new FailedServiceException($"Product {request.ProductId} cannot be found");
+
+        if (request.UserId != product.SellerId)
+            throw new FailedServiceException($"Update not allowed. UserId {request.UserId} does not match with sellerId {product.SellerId}");
+
+        product.ProductName = request.ProductName;
+        product.AmountAvailable = request.AmountAvailable;
+        product.Cost = request.Cost;
+
+        productRepository.Update(product);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return Unit.Value;
+    }
+}

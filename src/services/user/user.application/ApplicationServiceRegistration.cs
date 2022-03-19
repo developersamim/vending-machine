@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using user.application.Extension;
 
 namespace user.application;
 

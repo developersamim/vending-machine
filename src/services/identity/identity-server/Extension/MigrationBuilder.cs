@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using IdentityModel;
 using Serilog;
+using static common.utilities.Constant;
 
 namespace identity_server.Extension;
 
@@ -98,15 +99,15 @@ public static class MigrationBuilder
     private static void EnsureUsers(IServiceScope scope)
     {
         var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-        var alice = userMgr.FindByNameAsync("alice").Result;
+        var alice = userMgr.FindByNameAsync("alice@gmail.com").Result;
         if (alice is null)
-            CreateUser(userMgr, "alice", "alicesmith@gmail.com", "alice", "smith", "seller");
+            CreateUser(userMgr, "alice@gmail.com", "alice@gmail.com", "alice", "smith", "seller");
         else
             Log.Debug("alice already exists");
 
-        var john = userMgr.FindByNameAsync("john").Result;
+        var john = userMgr.FindByNameAsync("john@gmail.com").Result;
         if (john is null)
-            CreateUser(userMgr, "john", "johncena@gmail.com", "john", "cena", "buyer");
+            CreateUser(userMgr, "john@gmail.com", "john@gmail.com", "john", "cena", "buyer");
         else
             Log.Debug("john already exists");
     }
@@ -131,16 +132,16 @@ public static class MigrationBuilder
                 new Claim(JwtClaimTypes.GivenName, firstName),
                 new Claim(JwtClaimTypes.FamilyName, lastName),
                 new Claim(JwtClaimTypes.Role, role),
-                new Claim(JwtClaimTypes.Email, email)
+                //new Claim(JwtClaimTypes.Email, email),
+                //new Claim(KnownUserClaim.UserName, userName),
+                new Claim(KnownUserClaim.Deposit, "0")
         }).Result;
         if (!result.Succeeded)
         {
             throw new Exception(result.Errors.First().Description);
         }
 
-
         Log.Debug($"{userName} created");
-
     }
 }
 

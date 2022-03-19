@@ -1,6 +1,10 @@
 using common.api.swagger;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using user.application;
+using user.domain;
 using user.infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,7 +40,11 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<AuthorizeCheckOperationFilter>("oauth2", builder.Configuration.GetSection("SwaggerConfiguration:Auth:Scopes")?.GetChildren()?.Select(x => x.Value)?.ToArray());
 });
 
-builder.Services.AddAuthentication("Bearer")
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
     .AddIdentityServerAuthentication("Bearer", options =>
     {
         options.ApiName = builder.Configuration["AuthenticationSetting:ApiName"];
@@ -59,8 +67,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
-
+//app.UseHttpsRedirection();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 

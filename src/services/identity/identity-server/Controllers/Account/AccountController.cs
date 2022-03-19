@@ -259,7 +259,7 @@ namespace IdentityServerHost.Quickstart.UI
         public async Task<IActionResult> Register(UserRegistrationModel userModel, string button)
         {
             // the user clicked the "cancel" button
-            if(button != "register")
+            if (button != "register")
             {
                 return Redirect(userModel.ReturnUrl);
             }
@@ -279,10 +279,13 @@ namespace IdentityServerHost.Quickstart.UI
             if (result.Succeeded)
             {
                 result = await _userManager.AddClaimsAsync(user, new Claim[]{
-                    new Claim(JwtClaimTypes.Email, userModel.Email),
+                    //new Claim(JwtClaimTypes.Email, userModel.Email),
                     new Claim(JwtClaimTypes.GivenName, userModel.FirstName),
                     new Claim(JwtClaimTypes.FamilyName, userModel.LastName),
-                    new Claim(KnownUserClaim.CreateDate, DateTimeOffset.UtcNow.ToString("o"))
+                    new Claim(KnownUserClaim.CreateDate, DateTimeOffset.UtcNow.ToString("o")),
+                    //new Claim(KnownUserClaim.UserName, user.UserName),
+                    new Claim(KnownUserClaim.Deposit, "0")
+                    //new Claim(JwtClaimTypes.Role, )
                 });
 
                 if(context != null)

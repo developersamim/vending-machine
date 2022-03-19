@@ -1,4 +1,5 @@
 ﻿using common.entityframework;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using user.application.Contracts.Persistence;
+using user.domain;
 using user.infrastructure.Persistence;
 using user.infrastructure.Repositories;
 
@@ -24,6 +26,9 @@ public static class InfrastructureServiceRegistration
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
         return services;
     }

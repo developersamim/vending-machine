@@ -39,6 +39,8 @@ public class GetUserProfileByUserIdQueryHandler : IRequestHandler<GetUserProfile
         var result = claims.Select(uc => uc.ToClaim()).ToClaimsDictionary();
 
         var response = JsonSerializer.Deserialize<UserProfile>(JsonSerializer.Serialize(result));
+        if(response is not null)
+            response.Email = user.Email;
 
         return mapper.Map<UserProfileDto>(response);
     }

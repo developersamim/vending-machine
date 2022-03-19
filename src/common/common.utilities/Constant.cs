@@ -11,6 +11,8 @@ public static class Constant
         public const string Birthdate = "birthdate";
         public const string GivenName = "given_name";
         public const string FamilyName = "family_name";
+        public const string UserName = "username";
+        public const string Deposit = "deposit";
     }
 }
 

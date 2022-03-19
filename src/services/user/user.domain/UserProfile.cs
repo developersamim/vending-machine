@@ -13,4 +13,6 @@ public class UserProfile
     public string Email { get; set; }
     [JsonPropertyName("role")]
     public string Role { get; set; }
+    [JsonPropertyName("deposit")]
+    public double Deposit { get; set; }
 }

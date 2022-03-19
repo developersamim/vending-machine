@@ -13,4 +13,7 @@ namespace user.application.Contracts.Persistence;
 public interface IUserClaimRepository : IAsyncRepository<IdentityUserClaim<string>>
 {
     Task<List<Claim>> GetClaimsAsync(ApplicationUser user);
+    Task AddClaimAsync(ApplicationUser user, Claim claim);
+    Task ReplaceClaimAsync(ApplicationUser user, Claim existingClaim, Claim newClaim);
+    Task RemoveClaimAsync(ApplicationUser user, Claim existingClaim);
 }

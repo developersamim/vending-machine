@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using common.entityframework;
+using common.exception;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using product.application.Contracts.Persistence;
@@ -29,6 +30,9 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
 
     public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
+        if (request.Cost % 5 != 0)
+            throw new FailedServiceException($"Cost should only be multiple of 5");
+
         var product = mapper.Map<Product>(request);
         product.Id = Guid.NewGuid().ToString();
         productRepository.Add(product);

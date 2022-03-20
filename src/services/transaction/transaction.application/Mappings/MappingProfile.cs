@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using transaction.application.Models;
+using transaction.domain;
+using transaction.application.Features.Transactions.Commands.Buy;
 
 namespace transaction.application.Mappings;
 
@@ -7,5 +8,6 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<Product, ProductDto>();
     }
 }

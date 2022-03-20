@@ -9,6 +9,7 @@ namespace transaction.infrastructure.Setting;
 public class ApiSetting
 {
     public string UserApi { get; set; }
+    public string ProductApi { get; set; }
     public int HandlerLifetimeMinutes { get; set; }
     public string UserAgent { get; set; }
 }

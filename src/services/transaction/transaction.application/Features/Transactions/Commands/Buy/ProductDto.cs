@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace transaction.application.Models;
+namespace transaction.application.Features.Transactions.Commands.Buy;
 
 public class ProductDto
 {
@@ -12,6 +12,4 @@ public class ProductDto
     public string ProductName { get; set; }
     public int AmountAvailable { get; set; }
     public double Cost { get; set; }
-
-    public string SellerId { get; set; }
 }

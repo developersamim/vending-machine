@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using transaction.application.Features.Transactions.Commands.Deposit;
 using common.utilities;
 using transaction.api.Models;
+using transaction.application.Features.Transactions.Commands.Buy;
 
 namespace transaction.api.Controllers;
 
 [ApiController]
-[Route("[controller]")]    
-[Authorize]
+[Route("[controller]")]
+[Authorize(Roles = "buyer")]
 public class TransactionController : ControllerBase
 {
     private readonly ILogger<TransactionController> logger;
@@ -24,14 +25,13 @@ public class TransactionController : ControllerBase
         this.mapper = mapper;
     }
 
-    [HttpGet("{productId}")]
-    public async Task<IActionResult> Get(string productId)
-    {
-        return Ok("hi");
-    }
+    //[HttpGet("{productId}")]
+    //public async Task<IActionResult> Get(string productId)
+    //{
+    //    return Ok("hi");
+    //}
 
-    [HttpPost]
-    [Authorize(Roles = "buyer")]
+    [HttpPost("[action]")]    
     public async Task<IActionResult> Deposit([FromBody] CreateDepositDto request)
     {
         var command = mapper.Map<DepositCommand>(request);
@@ -40,6 +40,17 @@ public class TransactionController : ControllerBase
         await mediator.Send(command);
 
         return Ok();
+    }
+
+    [HttpPost("[action]")]
+    public async Task<ActionResult<BuyDto>> Buy([FromBody] CreateBuyDto request)
+    {
+        var command = mapper.Map<BuyCommand>(request);
+        command.UserId = User.UserId();
+
+        var result = await mediator.Send(command);
+
+        return result;
     }
 }
 

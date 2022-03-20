@@ -15,4 +15,6 @@ public class UpdateProductCommand : IRequest
     public double Cost { get; set; }
 
     public string UserId { get; set; }
+
+    public bool ByPass { get; set; } = false;
 }

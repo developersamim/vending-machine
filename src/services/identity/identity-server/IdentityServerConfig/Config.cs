@@ -116,6 +116,16 @@ public static class Config
                     },
                     //ApiSecrets = new List<Secret> { new Secret("ScopeSecret".Sha256())},
                     UserClaims = new List<string> {"role", "email"}
+                },
+                new ApiResource("transaction_resource", "transaction api")
+                {
+                    Scopes= new List<string> {
+                        KnownScope.ServerAccess.ToScope(),
+                        KnownScope.ClientAccess.ToScope(),
+                        KnownScope.Role.ToScope(),
+                        IdentityServerConstants.StandardScopes.OpenId
+                    },
+                    UserClaims = new List<string> {"role", "email"}
                 }
         };
 
@@ -238,6 +248,22 @@ public static class Config
                 {
                     ClientId = "product.api",
                     ClientName = "Product API",
+
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = { new Secret("secret".Sha256())},
+
+                    AllowedScopes =
+                    {
+                        KnownScope.ServerAccess.ToScope(),
+                        KnownScope.ClientAccess.ToScope(),
+                        KnownScope.Role.ToScope(),
+                        IdentityServerConstants.StandardScopes.OpenId
+                    }
+                },
+                new Client
+                {
+                    ClientId = "transaction.api",
+                    ClientName = "Transaction API",
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("secret".Sha256())},

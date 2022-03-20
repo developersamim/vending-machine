@@ -24,10 +24,12 @@ public class UserController : ControllerBase
         this.mediator = mediator;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public async Task<ActionResult> GetUser()
+    [HttpGet]
+    public async Task<ActionResult> GetUser([FromQuery] string? userId)
     {
-        var query = new GetUserProfileByUserIdQuery(User.UserId());
+        if (userId == null)
+            userId = User.UserId();
+        var query = new GetUserProfileByUserIdQuery(userId);
         var result = await mediator.Send(query);
 
         return Ok(result);  
@@ -43,11 +45,14 @@ public class UserController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult> UpdateProfileElement([FromBody] Dictionary<string, object> profileElements)
+    public async Task<ActionResult> UpdateProfileElement([FromQuery] string? userId, [FromBody] Dictionary<string, object> profileElements)
     {
+        if (userId is null)
+            userId = User.UserId();
+
         var command = new UpdateProfileElementCommand()
         {
-            UserId = User.UserId(),
+            UserId = userId,
             KeyValuePairs = profileElements
         };
 
@@ -57,11 +62,14 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<ActionResult> DeleteProfileElement([FromQuery] List<string> keys)
+    public async Task<ActionResult> DeleteProfileElement([FromQuery] string? userId, [FromQuery] List<string> keys)
     {
+        if (userId is null)
+            userId = User.UserId();
+
         var command = new DeleteProfileElementCommand()
         {
-            UserId = User.UserId(),
+            UserId = userId,
             Keys = keys
         };
 

@@ -75,7 +75,9 @@ if (app.Environment.IsDevelopment())
                    .SetIsOriginAllowed(origin => true) // allow any origin
                    .WithOrigins(
                         "http://localhost",
-                        "http://localhost:8000"));
+                        "http://localhost:8000",
+                        "http://localhost:8100",
+                        "http://localhost:8200"));
 }
 
 app.InitializeDatabase(app.Environment.IsDevelopment(), app.Services);

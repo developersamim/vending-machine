@@ -1,4 +1,5 @@
 using common.api.swagger;
+using common.exception;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -66,6 +67,7 @@ if (app.Environment.IsDevelopment())
         options.OAuthUsePkce();
     });
 }
+app.ConfigureCustomExceptionHandler();
 
 //app.UseHttpsRedirection();
 app.UseRouting();

@@ -1,5 +1,6 @@
 using common.api;
 using common.api.swagger;
+using common.exception;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
@@ -90,6 +91,8 @@ if (app.Environment.IsDevelopment())
         options.OAuthUsePkce();
     });
 }
+
+app.ConfigureCustomExceptionHandler();
 
 app.UseHttpsRedirection();
 

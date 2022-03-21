@@ -1,4 +1,5 @@
 using common.api.swagger;
+using common.exception;
 using Microsoft.OpenApi.Models;
 using product.api;
 using product.api.Extension;
@@ -63,6 +64,7 @@ if (app.Environment.IsDevelopment())
         options.OAuthUsePkce();
     });
 }
+app.ConfigureCustomExceptionHandler();
 
 app.InitializeDatabase(app.Environment.IsDevelopment(), app.Services);
 

@@ -15,4 +15,8 @@ public class UserProfile
     public string Role { get; set; }
     [JsonPropertyName("deposit")]
     public double Deposit { get; set; }
+    [JsonPropertyName("givenName")]
+    public string GivenName { get; set; }
+    [JsonPropertyName("familyName")]
+    public string FamilyName { get; set; }
 }

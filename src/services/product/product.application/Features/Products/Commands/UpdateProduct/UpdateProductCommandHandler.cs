@@ -30,7 +30,7 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
         if (product == null)
             throw new FailedServiceException($"Product {request.ProductId} cannot be found");
 
-        if(request.Cost >= 0)
+        if(request.Cost > 0)
         {
             if (request.Cost % 5 != 0)
                 throw new FailedServiceException($"Cost should only be multiple of 5");
@@ -39,9 +39,12 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
         if (request.ByPass == false && request.UserId != product.SellerId)
             throw new FailedServiceException($"Update not allowed. UserId {request.UserId} does not match with sellerId {product.SellerId}");
 
-        product.ProductName = request.ProductName;
-        product.AmountAvailable = request.AmountAvailable;
-        product.Cost = request.Cost;
+        if(!string.IsNullOrEmpty(request.ProductName))
+            product.ProductName = request.ProductName;
+        if (request.Cost > 0)
+            product.Cost = request.Cost;
+        if(request.AmountAvailable > 0)
+            product.AmountAvailable = request.AmountAvailable;        
 
         productRepository.Update(product);
 

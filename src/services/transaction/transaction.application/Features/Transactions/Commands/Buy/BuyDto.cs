@@ -10,4 +10,5 @@ public class BuyDto
 {
     public double Spent { get; set; }
     public ProductDto Product { get; set; }
+    public string Change { get; set; }
 }

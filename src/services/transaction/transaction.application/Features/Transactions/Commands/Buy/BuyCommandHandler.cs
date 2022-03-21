@@ -6,8 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using transaction.application.Contracts.Infrastructure;
+using transaction.application.Features.Transactions.Commands.Deposit;
 using transaction.domain;
 
 namespace transaction.application.Features.Transactions.Commands.Buy;
@@ -43,9 +45,13 @@ public class BuyCommandHandler : IRequestHandler<BuyCommand, BuyDto>
         if (cost > userProfile.Deposit)
             throw new FailedServiceException($"Total cost of this buy is {cost}, which is greater than deposit {userProfile.Deposit}");
 
+        int[] cents = new int[] { 5, 10, 20, 50, 100 };
+
+        var change = Cashier.GetChange(userProfile.Deposit - cost);
+
         var keyValuePairs = new Dictionary<string, object>
         {
-            [Constant.KnownUserClaim.Deposit] = userProfile.Deposit - cost
+            [Constant.KnownUserClaim.Deposit] = 0
         };
         await userService.UpdateProfile(request.UserId, keyValuePairs);
 
@@ -55,7 +61,8 @@ public class BuyCommandHandler : IRequestHandler<BuyCommand, BuyDto>
         return new BuyDto()
         {
             Spent = cost,
-            Product = mapper.Map<ProductDto>(product)
+            Product = mapper.Map<ProductDto>(product),
+            Change = JsonSerializer.Serialize(change.OrderBy(s => s).ToArray())
         };
     }
 }

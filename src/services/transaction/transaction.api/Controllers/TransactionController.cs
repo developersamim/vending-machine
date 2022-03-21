@@ -6,6 +6,7 @@ using transaction.application.Features.Transactions.Commands.Deposit;
 using common.utilities;
 using transaction.api.Models;
 using transaction.application.Features.Transactions.Commands.Buy;
+using transaction.application.Features.Transactions.Commands.Reset;
 
 namespace transaction.api.Controllers;
 
@@ -24,12 +25,6 @@ public class TransactionController : ControllerBase
         this.mediator = mediator;
         this.mapper = mapper;
     }
-
-    //[HttpGet("{productId}")]
-    //public async Task<IActionResult> Get(string productId)
-    //{
-    //    return Ok("hi");
-    //}
 
     [HttpPost("[action]")]    
     public async Task<IActionResult> Deposit([FromBody] CreateDepositDto request)
@@ -51,6 +46,15 @@ public class TransactionController : ControllerBase
         var result = await mediator.Send(command);
 
         return result;
+    }
+
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Reset()
+    {
+        var command = new ResetCommand() { UserId = User.UserId() };
+        await mediator.Send(command);
+
+        return NoContent();
     }
 }
 

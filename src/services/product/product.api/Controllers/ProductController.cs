@@ -9,6 +9,7 @@ using product.application.Features.Products.Queries.GetProductById;
 using common.utilities;
 using Microsoft.AspNetCore.Authorization;
 using product.application.Features.Products.Queries.GetProductByName;
+using product.application.Features.Products.Queries.GetProducts;
 
 namespace product.api.Controllers
 {
@@ -36,10 +37,19 @@ namespace product.api.Controllers
             return Ok(result);
         }
 
-        [HttpGet(Name = "GetProductByName")]
+        [HttpGet("[action]")]
         public async Task<IActionResult> GetProductByName([FromQuery] string name)
         {
             var query = new GetProductByNameQuery() { ProductName = name };
+            var result = await mediator.Send(query);
+
+            return Ok(result);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProducts()
+        {
+            var query = new GetProductsQuery();
             var result = await mediator.Send(query);
 
             return Ok(result);

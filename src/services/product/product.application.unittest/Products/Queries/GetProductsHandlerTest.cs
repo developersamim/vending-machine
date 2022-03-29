@@ -1,47 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Moq;
 using product.application.Contracts.Persistence;
-using product.application.Features.Products.Queries.GetProductById;
+using product.application.Features.Products.Queries.GetProducts;
 using product.application.Mappings;
 using product.application.Models;
 using product.application.unittest.Mock;
-using Xunit;
 using Shouldly;
+using Xunit;
 
 namespace product.application.unittest.Products.Queries;
 
-public class GetProductByIdHandlerTest
+public class GetProductsHandlerTest
 {
 	private readonly IMapper mapper;
+	private readonly Mock<ILogger<GetProductsQueryHandler>> logger;
 	private readonly Mock<IProductRepository> mockProductRepository;
-	private readonly Mock<ILogger<GetProductByIdQueryHandler>> logger;
 
-	public GetProductByIdHandlerTest()
-    {
+	public GetProductsHandlerTest()
+	{
 		mockProductRepository = MockProductRepository.GetProductRepository();
 
 		var configurationProvider = new MapperConfiguration(cfg =>
 		{
 			cfg.AddProfile<MappingProfile>();
 		});
-
 		mapper = configurationProvider.CreateMapper();
 
-		logger = new Mock<ILogger<GetProductByIdQueryHandler>>();
-    }
+		logger = new Mock<ILogger<GetProductsQueryHandler>>();
+	}
 
 	[Fact]
-	public async Task GetProductByIdTest()
+	public async Task GetProductsTest()
     {
-		var handler = new GetProductByIdQueryHandler(logger.Object, mockProductRepository.Object, mapper);
+		var handler = new GetProductsQueryHandler(mockProductRepository.Object, mapper);
 
-		var result = await handler.Handle(new GetProductByIdQuery("1234"), CancellationToken.None);
+		var result = await handler.Handle(new GetProductsQuery(), CancellationToken.None);
 
-		result.ShouldBeOfType<ProductDto>();
+		result.ShouldBeOfType<List<ProductDto>>();
     }
 }
 

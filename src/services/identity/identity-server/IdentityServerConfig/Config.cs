@@ -126,7 +126,18 @@ public static class Config
                         IdentityServerConstants.StandardScopes.OpenId
                     },
                     UserClaims = new List<string> {"role", "email"}
-                }
+                },
+                //new ApiResource("product_function", "product function")
+                //{
+                //    Scopes= new List<string>
+                //    {
+                //        KnownScope.ServerAccess.ToScope(),
+                //        KnownScope.ClientAccess.ToScope(),
+                //        KnownScope.Role.ToScope(),
+                //        IdentityServerConstants.StandardScopes.OpenId
+                //    },
+                //    UserClaims = new List<string> {"role", "email"}
+                //}
         };
 
     public static IEnumerable<Client> DevelopmentClients =>
@@ -264,6 +275,22 @@ public static class Config
                 {
                     ClientId = "transaction.api",
                     ClientName = "Transaction API",
+
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = { new Secret("secret".Sha256())},
+
+                    AllowedScopes =
+                    {
+                        KnownScope.ServerAccess.ToScope(),
+                        KnownScope.ClientAccess.ToScope(),
+                        KnownScope.Role.ToScope(),
+                        IdentityServerConstants.StandardScopes.OpenId
+                    }
+                },
+                new Client
+                {
+                    ClientId = "product.function",
+                    ClientName = "Product Function",
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("secret".Sha256())},

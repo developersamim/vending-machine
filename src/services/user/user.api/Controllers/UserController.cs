@@ -1,4 +1,4 @@
-using common.utilities;
+﻿using common.utilities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +6,7 @@ using user.application.Features.Users.Commands.CreateUser;
 using user.application.Features.Users.Commands.DeleteProfileElement;
 using user.application.Features.Users.Commands.UpdateProfileElement;
 using user.application.Features.Users.Queries.GetUserProfileByUserId;
+using user.application.Features.Users.Queries.GetUsers;
 using user.application.Models;
 
 namespace user.api.Controllers;
@@ -33,6 +34,15 @@ public class UserController : ControllerBase
         var result = await mediator.Send(query);
 
         return Ok(result);  
+    }
+
+    [HttpGet("all")]
+    public async Task<ActionResult> GetUsers()
+    {
+        var query = new GetUsersQuery();
+        var result = await mediator.Send(query);
+
+        return Ok(result);
     }
 
     [HttpPost]

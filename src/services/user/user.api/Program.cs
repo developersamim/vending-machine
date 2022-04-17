@@ -1,4 +1,4 @@
-using common.api.swagger;
+﻿using common.api.swagger;
 using common.exception;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -52,6 +52,16 @@ builder.Services.AddAuthentication(options =>
         options.Authority = builder.Configuration["AuthenticationSetting:Authority"];
     });
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:7186");
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -71,6 +81,9 @@ app.ConfigureCustomExceptionHandler();
 
 //app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
+
 app.UseAuthentication();
 app.UseAuthorization();
 

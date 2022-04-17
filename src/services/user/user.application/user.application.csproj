@@ -26,4 +26,10 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Features\Users\Queries\GetUsers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Users\Queries\GetUsers\" />
+  </ItemGroup>
 </Project>

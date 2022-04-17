@@ -1,0 +1,46 @@
+﻿@page "/fetchdata"
+@attribute [Authorize]
+
+@inject UserService userService;
+
+@using AdminWebApp.Services
+
+<h1>Users</h1>
+
+@if (userProfileDtoList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Given name</th>
+                <th>Family name</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in userProfileDtoList)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.GivenName</td>
+                    <td>@user.FamilyName</td>
+                    <td>@user.Role</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<UserProfileDto> userProfileDtoList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        userProfileDtoList = await userService.GetUsers();
+    }
+}

@@ -61,13 +61,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "common.api", "common\common
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "transaction.domain", "services\transaction\transaction.domain\transaction.domain.csproj", "{6BAAA871-BAC8-4C21-831A-C8CE428A3AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "product.api.integrationtest", "services\product\product.api.integrationtest\product.api.integrationtest.csproj", "{ABB9DF32-00B8-438F-881B-CF2FA73EC6D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "product.api.integrationtest", "services\product\product.api.integrationtest\product.api.integrationtest.csproj", "{ABB9DF32-00B8-438F-881B-CF2FA73EC6D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "product.application.unittest", "services\product\product.application.unittest\product.application.unittest.csproj", "{288EE6D6-F355-4CD6-82E8-7A3912CE1110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "product.application.unittest", "services\product\product.application.unittest\product.application.unittest.csproj", "{288EE6D6-F355-4CD6-82E8-7A3912CE1110}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "serverless", "serverless", "{6C15E800-063B-4955-B799-EB17625EDACC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "product_function", "serverless\product_function\product_function.csproj", "{F15360AB-94C2-4F49-A68B-BCBC592B64F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "product_function", "serverless\product_function\product_function.csproj", "{F15360AB-94C2-4F49-A68B-BCBC592B64F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

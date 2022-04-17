@@ -69,6 +69,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "serverless", "serverless", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "product_function", "serverless\product_function\product_function.csproj", "{F15360AB-94C2-4F49-A68B-BCBC592B64F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminWebApp", "clients\AdminWebApp\AdminWebApp.csproj", "{97357C4F-0094-49C4-BB48-A81073E297FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,10 @@ Global
 		{F15360AB-94C2-4F49-A68B-BCBC592B64F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15360AB-94C2-4F49-A68B-BCBC592B64F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15360AB-94C2-4F49-A68B-BCBC592B64F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97357C4F-0094-49C4-BB48-A81073E297FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97357C4F-0094-49C4-BB48-A81073E297FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97357C4F-0094-49C4-BB48-A81073E297FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97357C4F-0094-49C4-BB48-A81073E297FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -209,6 +215,7 @@ Global
 		{ABB9DF32-00B8-438F-881B-CF2FA73EC6D2} = {D7DB93DD-DB11-4DF4-9CC4-13F34783CFEA}
 		{288EE6D6-F355-4CD6-82E8-7A3912CE1110} = {D7DB93DD-DB11-4DF4-9CC4-13F34783CFEA}
 		{F15360AB-94C2-4F49-A68B-BCBC592B64F3} = {6C15E800-063B-4955-B799-EB17625EDACC}
+		{97357C4F-0094-49C4-BB48-A81073E297FB} = {2B37723F-CC54-472A-B7FF-A1A7EBE44FC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A07576E-4543-45BF-BC61-640700D55570}

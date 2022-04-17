@@ -339,6 +339,32 @@ public static class Config
                     RequirePkce = true,
                     RequireConsent = true,
                     AllowPlainTextPkce = false
+                },
+                // blazor wasm AdminWebApp
+                new Client
+                {
+                    ClientId = "blazorWASM",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+                    AllowedCorsOrigins =
+                    {
+                        "https://localhost:7186"
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        KnownScope.ClientAccess.ToScope()
+                    },
+                    RedirectUris =
+                    {
+                        "https://localhost:7186/authentication/login-callback"
+                    },
+                    PostLogoutRedirectUris =
+                    {
+                        "https://localhost:7186/authentication/logout-callback"
+                    }
                 }
         };
 }
